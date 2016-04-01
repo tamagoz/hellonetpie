@@ -1,0 +1,31 @@
+<script src="https://netpie.io/microgear.js"></script>
+
+<script>
+	const APPID = <APPID>
+	const KEY = <APPKEY>
+	const SECRET = <APPSECRET>
+
+	const ALIAS = "display";
+
+	var microgear = Microgear.create({
+		key: KEY,
+		secret:SECRET,
+		alias : ALIAS
+	});
+
+	microgear.on('message',function(topic,msg) {
+		if (msg == '0') document.body.style.backgroundColor = "#FFFFFF";
+		if (msg == '1') document.body.style.backgroundColor = "#FFFF88";
+
+	});
+
+	microgear.on('connected', function() {
+		microgear.setAlias(ALIAS);
+		document.getElementById("data").innerHTML = "Connected";
+	});
+
+	microgear.connect(APPID);
+
+</script>
+
+<div id="data">_____</div>
